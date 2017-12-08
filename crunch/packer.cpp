@@ -192,7 +192,7 @@ void Packer::SaveJson(const string& name, ofstream& json, bool trim, bool rotate
     json << "\t\t\t]" << endl;
 }
 
-void Packer::SaveTexturePacker(const string &name, const string &outputDir, bool trim, bool rotate)
+void Packer::SaveSpine(const string &name, const string &outputDir, bool trim, bool rotate)
 {
     ofstream atlas(outputDir + name + ".atlas");
     
@@ -207,7 +207,7 @@ void Packer::SaveTexturePacker(const string &name, const string &outputDir, bool
     for(size_t i = 0, j = bitmaps.size(); i < j; ++i)
     {
         atlas << outputDir + bitmaps[i]->name << endl;
-        atlas << tab << "rotate: " << (points[i].rot ? "true" : "false") << endl;
+        atlas << tab << "rotate: " << (rotate && points[i].rot ? "true" : "false") << endl;
         atlas << tab << "xy: " << points[i].x << ", " << points[i].y << endl;
         atlas << tab << "size: " << bitmaps[i]->width << ", " << bitmaps[i]->height << endl;
         atlas << tab << "orig: " << bitmaps[i]->width << ", " << bitmaps[i]->height << endl;
